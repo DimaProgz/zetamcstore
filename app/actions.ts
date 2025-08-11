@@ -170,3 +170,12 @@ export async function handleZephyrPurchase(nickname: string, quantity: number) {
 
   return processPurchase(nickname, amount, orderId, comment, customFields, rconCommand)
 }
+
+export async function checkRcon() {
+  try {
+    const response = await executeRconCommand("say 123");
+    return { success: true, message: response };
+  } catch (error) {
+    return { success: false, message: (error as Error).message };
+  }
+}
